@@ -1,0 +1,375 @@
+@using Microsoft.AspNetCore.Identity
+@using InstaRoi.Models
+@model InstaRoi.Models.MarketingElements
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@{
+    ViewData["Title"] = "Enter your information here";
+}
+<style>
+    .c1 {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #663399;
+    }
+
+    .c2 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .c1 dt {
+        color: #ffffff;
+    }
+
+    .c2 dt {
+        color: #663399;
+    }
+
+    .card {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        background-color: #303030;
+        transition: 0.5s;
+        font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
+        line-height: normal;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .btn {
+        background-color: #663399;
+        color: white;
+        transition-duration: 0.4s;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-color: #663399;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+        .btn:hover {
+            background-color: #663399;
+            color: #39FF00;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-color: #663399;
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+
+    .form-group {
+        margin-bottom: 5px !important;
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+</style>
+<h4>InstaROI Calculation</h4>
+<h6>* - Required Fields</h6>
+<div class="row">
+    <div class="card col-md-12 col-sm-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="c1 col-md-4 col-sm-12 col-xs-12">
+
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                        <p>Element Type</p>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;">
+                        @*<select asp-for="ElementType" class="form-control" asp-items="ViewBag.CampaignType"></select>*@
+                        <input asp-for="ElementType" class="form-control" placeholder="" value="Outdoor Advertising" required autocomplete="off" readonly="readonly" />
+                        <span asp-validation-for="ElementType" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <h3 style="margin-top:0px;">Enter your information here</h3>
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                        <p>Element Name*</p>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="ElementName" class="form-control" placeholder="" required autocomplete="off" />
+                        @*<select asp-for="ElementName" class="form-control" asp-items="ViewBag.CampaignType"></select>*@
+                        <input asp-for="UserId" class="form-control" placeholder="" autocomplete="off" value="0" type="hidden" />
+                        <input asp-for="UserName" class="form-control" placeholder="" autocomplete="off" value="@UserManager.GetUserName(User)" type="hidden" />
+                        <span asp-validation-for="ElementName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <p>Element Description</p>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-5" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="ElementDescription" class="form-control" placeholder="" autocomplete="off" />
+                        <span asp-validation-for="ElementDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <p>Start Date</p>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-5" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="StartDate" class="form-control" placeholder="" autocomplete="off" type="date" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <p>End Date</p>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-5" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="EndDate" class="form-control" placeholder="" autocomplete="off" type="date" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <p><b>Cost (Investment)*</b></p>
+                <p>Enter Cost below as applicable</p>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <p>Media Buy</p>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                    <p>$</p>
+                </div>
+                <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                    @*<div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                <p>Investment 1</p>
+            </div>*@
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right:0px;">
+                        <input asp-for="Investment1" class="form-control" value="0" placeholder="" onkeyup="sum();" autocomplete="off" />
+                        <span asp-validation-for="Investment1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <p>Creative costs</p>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                    <p>$</p>
+                </div>
+                <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                    @*<div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                <p>Investment 2</p>
+            </div>*@
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right:0px;">
+                        <input asp-for="Investment2" class="form-control" value="0" placeholder="" onkeyup="sum();" autocomplete="off" />
+                        <span asp-validation-for="Investment2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <p>Agency cost</p>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                    <p>$</p>
+                </div>
+                <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                    @*<div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                <p>Investment 1</p>
+            </div>*@
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right:0px;">
+                        <input asp-for="Investment3" class="form-control" value="0" placeholder="" onkeyup="sum();" autocomplete="off" />
+                        <span asp-validation-for="Investment3" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                    <p>Other</p>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                    <p>$</p>
+                </div>
+                <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                    @*<div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                <p>Investment 2</p>
+            </div>*@
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right:0px;">
+                        <input asp-for="Investment4" class="form-control" value="0" placeholder="" onkeyup="sum();" autocomplete="off" />
+                        <span asp-validation-for="Investment4" class="text-danger"></span>
+                    </div>
+                </div>
+                <p><b>Revenue (Return)</b></p>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <p>Number of Leads*<a href="#" style="font-size:small;" data-toggle="tooltip" data-placement="bottom" title="Estimated number of prospects who engaged">?</a></p>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-5" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="NumberOfLeads" class="form-control" placeholder="" onkeyup="revenue();" autocomplete="off" value="" />
+                        <span asp-validation-for="NumberOfLeads" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:5px; padding-right:5px;">
+                        <p>Conversion Percent*<a href="#" style="font-size:small;" data-toggle="tooltip" data-placement="bottom" title="Estimated % of prospects who will become customers">?</a></p>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:17px; padding-right:0px;">
+                        <p>%</p>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-5" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="ConversionPercentage" class="form-control" placeholder="" onkeyup="revenue();" autocomplete="off" value="" />
+                        <span asp-validation-for="ConversionPercentage" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:5px; padding-right:5px;">
+                        <p>Conversion Value*<a href="#" style="font-size:small;" data-toggle="tooltip" data-placement="bottom" title="Estimated value of a customer">?</a></p>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                        <p>$</p>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-5" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="ConversionValue" class="form-control" placeholder="" onkeyup="revenue();" autocomplete="off" value="" />
+                        <span asp-validation-for="ConversionValue" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="c2 col-md-8 col-sm-12 col-xs-12">
+
+                <h3>Your Insta ROI Results</h3>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                        <p>Total Investment</p>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                        <p>$</p>
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="Investment6" class="form-control" readonly="readonly" autocomplete="off" value="" />
+                        <span asp-validation-for="Investment6" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                        <p>Total Revenue</p>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                        <p>$</p>
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="Profit" class="form-control" readonly="readonly" autocomplete="off" value="" />
+                        <span asp-validation-for="Profit" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                        <p>ROI</p>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:20px; padding-right:0px;">
+                        <p>$</p>
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="Roi" class="form-control" placeholder="" readonly="readonly" autocomplete="off" value="" />
+                        <span asp-validation-for="Roi" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:5px; padding-right:5px;">
+                        <p>ROI%</p>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding-left:17px; padding-right:0px;">
+                        <p>%</p>
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:5px; padding-right:5px;">
+                        <input asp-for="RoiPercentage" class="form-control" placeholder="" readonly="readonly" autocomplete="off" value="" />
+                        <span asp-validation-for="RoiPercentage" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12" style="margin-top:10px !important;">
+                    @*<input value="Recalculate" onclick="recalculate();" class="btn btn-default" />*@
+                    <a onclick="recalculate();" class="btn btn-default">Recalculate</a>
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12" style="margin-top:10px !important;">
+                    <a asp-action="Index" class="btn btn-default">Go to Dashboard</a>
+                    <a asp-controller="Home" asp-action="about" class="btn btn-default">Go to Home</a>
+                </div>
+                @*<hr />*@
+                <a asp-controller="Home" asp-action="Faq" style="margin: 10px !important;">For Frequently asked Questions Click Here</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script language="JavaScript" type="text/javascript">
+    function recalculate() {
+        document.getElementById('Investment1').value = "0";
+        document.getElementById('Investment2').value = "0";
+        document.getElementById('Investment3').value = "0";
+        document.getElementById('Investment4').value = "0";
+        document.getElementById('NumberOfLeads').value = "";
+        document.getElementById('ConversionPercentage').value = "";
+        document.getElementById('ConversionValue').value = "";
+        document.getElementById('ElementDescription').value = "";
+        document.getElementById('StartDate').value = "";
+        document.getElementById('EndDate').value = "";
+        document.getElementById('Investment6').value = "";
+        document.getElementById('Profit').value = "";
+        document.getElementById('Roi').value = "";
+        document.getElementById('RoiPercentage').value = "";
+
+    }
+</script>
+<script language="JavaScript" type="text/javascript">
+    function sum() {
+        var tbi1 = document.getElementById('Investment1');
+        var tbi2 = document.getElementById('Investment2');
+        var tbi3 = document.getElementById('Investment3');
+        var tbi4 = document.getElementById('Investment4');
+        //var tbi5 = document.getElementById('Investment5');
+        var tbi6 = document.getElementById('Investment6');
+        //var tbi7 = document.getElementById('InvestmentField');
+        //if (!isNaN(tbi7.value)) {
+        //tbi7.value = parseInt(tbi1.value) + parseInt(tbi2.value) + parseInt(tbi3.value) + parseInt(tbi4.value) + parseInt(tbi5.value) + parseInt(tbi6.value);
+        var totalInvestment = parseInt(tbi1.value) + parseInt(tbi2.value) + parseInt(tbi3.value) + parseInt(tbi4.value);
+        if (!isNaN(totalInvestment)) {
+            tbi6.value = parseFloat(totalInvestment);
+        }
+        var tbr4 = document.getElementById('Profit');
+        var tbroi1 = document.getElementById('Roi');
+        var tbroi2 = document.getElementById('RoiPercentage');
+        var totalroi1 = parseFloat(parseInt(tbr4.value) - parseInt(tbi6.value)).toFixed(2);
+        var totalroi2 = parseFloat(((parseInt(tbr4.value) - parseInt(tbi6.value)) / parseInt(tbi6.value)) * 100.00).toFixed(2);
+        if (!isNaN(totalroi1) || !isNaN(totalroi2)) {
+            tbroi1.value = parseFloat(totalroi1).toFixed(2);
+            tbroi2.value = parseFloat(totalroi2).toFixed(2);
+        }
+    }
+</script>
+<script language="JavaScript" type="text/javascript">
+    function revenue() {
+        var tbr1 = document.getElementById('NumberOfLeads');
+        var tbr2 = document.getElementById('ConversionPercentage');
+        var tbr3 = document.getElementById('ConversionValue');
+        var tbr4 = document.getElementById('Profit');
+        var tprofit = parseFloat(parseInt(tbr1.value) * parseInt(tbr2.value) / 100.00 * parseInt(tbr3.value)).toFixed(2);
+        if (!isNaN(tprofit)) {
+            tbr4.value = parseFloat(tprofit).toFixed(2);
+        }
+        var tbi6 = document.getElementById('Investment6');
+        var tbroi1 = document.getElementById('Roi');
+        var tbroi2 = document.getElementById('RoiPercentage');
+        var totalroi1 = parseFloat(parseInt(tbr4.value) - parseInt(tbi6.value)).toFixed(2);
+        var totalroi2 = parseFloat(((parseInt(tbr4.value) - parseInt(tbi6.value)) / parseInt(tbi6.value)) * 100.00).toFixed(2);
+        if (!isNaN(totalroi1) || !isNaN(totalroi2)) {
+            tbroi1.value = parseFloat(totalroi1).toFixed(2);
+            tbroi2.value = parseFloat(totalroi2).toFixed(2);
+        }
+
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

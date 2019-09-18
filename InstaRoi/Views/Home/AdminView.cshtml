@@ -1,0 +1,205 @@
+@model IEnumerable<InstaRoi.Models.ApplicationUser>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+    @{
+    ViewData["Title"] = "Control Center";
+    }
+    <style>
+        .accordion {
+            margin-bottom: 5px;
+            background-color: #444;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.4s;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-color: #444;
+            font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
+        }
+
+            .active, .accordion:hover {
+                box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+                background-color: #444;
+            }
+
+            .accordion:after {
+                content: '\002B';
+                color: #39FF00;
+                font-weight: bold;
+                float: right;
+                margin-left: 5px;
+            }
+
+        .active:after {
+            content: "\2212";
+            color: #663399;
+        }
+
+        .panel {
+            border: 0px !important;
+            font-size: 15px;
+            /*padding-top: 10px !important;*/
+            margin-bottom: 5px;
+            border-radius: 5px;
+            font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
+            color: #ffffff;
+            padding: 0 18px;
+            background-color: #663399;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+
+
+    @*<p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                                @Html.DisplayNameFor(model => model.NormalizedUserName)
+                            </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                                    @Html.DisplayNameFor(model => model.NormalizedEmail)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EmailConfirmed)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PasswordHash)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SecurityStamp)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ConcurrencyStamp)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LockoutEnd)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LockoutEnabled)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccessFailedCount)
+                                </th>
+                            <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.NormalizedUserName)
+                            </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.NormalizedEmail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PasswordHash)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SecurityStamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ConcurrencyStamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LockoutEnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LockoutEnabled)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                            </td>
+
+                        <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                    </tr>
+        }
+                </tbody>
+            </table>*@
+
+    @if ((@UserManager.GetUserName(User) == "jeff10.rj@gmail.com") || (UserManager.GetUserName(User) == "lori.mccrae@hotmail.com") || (@UserManager.GetUserName(User) == "jeff10.rj1@gmail.com"))
+    {
+    <h4>InstaROI: Users</h4>
+    @foreach (var item in Model)
+    {
+    <button class="accordion w3-animate-left">@Html.DisplayFor(modelItem => item.UserName)</button>
+    <div class="panel">
+        <p style="margin: 5px !important;">Username: @Html.DisplayFor(modelItem => item.UserName)</p>
+        <p style="margin: 5px !important;">Email: @Html.DisplayFor(modelItem => item.Email)</p>
+        <p style="margin: 5px !important;">Email Confirmed: @Html.DisplayFor(modelItem => item.EmailConfirmed)</p>
+        <p style="margin: 5px !important;">Phone: @Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+        <p style="margin: 5px !important;">Phone Confirmed: @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)</p>
+    </div>
+    }
+    }
+     else
+        {
+    <h3>You must be an administrator to access the contents of this page</h3>
+        }
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+

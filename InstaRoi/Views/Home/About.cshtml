@@ -1,0 +1,370 @@
+﻿@model IEnumerable<InstaRoi.Models.MarketingElements>
+@{
+    ViewData["Title"] = "Marketing Elements";
+}
+<h4>@ViewData["Title"]</h4>
+<h4>Select a Marketing Element to calculate ROI</h4>
+<style>
+    .card-text {
+        font-size: 14px;
+    }
+
+    .card:hover .card-header {
+        opacity: 0.8 !important;
+    }
+
+    .card-header {
+        font-weight: bold;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        background-color: #663399;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        opacity: 0;
+        filter: alpha(opacity=40);
+    }
+
+    .background {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .c {
+        padding: 5px;
+    }
+
+    .card-deck {
+        margin-bottom: 5px;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .card {
+        margin: 5px;
+        margin-bottom: 5px;
+        background-color: #303030;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.5s;
+        border-radius: 5px;
+        color: white;
+        line-height: 50%;
+    }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+
+    img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        transition: all 0.4s ease-out;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .btn {
+        background-color: #663399;
+        color: white;
+        transition-duration: 0.4s;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-color: #663399;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+        .btn:hover {
+            background-color: #663399;
+            color: #39FF00;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-color: #663399;
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+        a {
+            margin-bottom:5px !important;
+        }
+</style>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/events.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes trade shows, networking events or any business socials where connections are made.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Events</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateEvents" asp-route-id="0" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexEvents" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/social.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes any social media platform where business is conducted.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Social Media</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateSocial" asp-route-id="1" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexSocial" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/onlineadvertising.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes Google Ads, Internet Ads or any other Pay Per Click Online Advertising.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Online Ads</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateOnlineads" asp-route-id="2" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexOnlineads" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/website.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes business leads off a website from Contact Us Forms (Email or Call) and other Conversion-based Forms</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Website</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateWebsite" asp-route-id="3" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexWebsite" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/promotion.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes anything your customer base can win, get or save by way of sweepstakes/contests, coupons, special offers and partner promotions.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Promotions</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreatePromotions" asp-route-id="4" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexPromotions" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/email.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes anything ads and information e-mailed to customers.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Email</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateEmail" asp-route-id="5" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexEmail" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/newspaper.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes ads and editorials in any newspaper or magazine format.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Newspaper / Magazine</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateNewspaper" asp-route-id="6" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexNewspaper" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/radio.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes any radio ads, promotions, appearances or remotes.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Radio Advertising</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateRadio" asp-route-id="7" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexRadio" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/tv.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes any TV spots or sponsorships of programs.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>TV Advertising</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateTv" asp-route-id="8" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexTv" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/outdoor.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes billboard, transit, bus shelter or any other form of outdoor ads.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Outdoor Advertising</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateOutdoor" asp-route-id="9" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexOutdoor" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/sponsor.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes dollars paid towards organizations, charities or events.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Sponsorship</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateSponsor" asp-route-id="10" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexSponsor" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/video.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes videos produced for online marketing, email marketing and mobile marketing, plus any mobile applications you may be using/investing in to market your message.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Video / Mobile Marketing</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateVideo" asp-route-id="11" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexVideo" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/email1.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes anything printed and mailed out/couriered to customers.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Direct Mail</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateDirectMail" asp-route-id="12" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexDirectMail" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck col-md-3 col-sm-4 col-xs-6">
+    <div class="card">
+        <div class="background" style="background-image: url(../images/other.jpeg); width:100%; height:150px; background-size:cover">
+            <div class="card-header">
+                <p>
+                    <h4 class="card-text">This includes any marketing element not listed in the main menu of this app that is specific to your business.</h4>
+                </p>
+            </div>
+        </div>
+        <div class="c">
+            <div class="card-block">
+                <h4 class="card-title"><b>Other / Miscellaneous</b></h4>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Dashboard" asp-action="CreateOther" asp-route-id="13" class="btn btn-default">Calculate</a>
+                <a asp-controller="Dashboard" asp-action="IndexOther" asp-route-id="1" class="btn btn-default">Element Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,192 @@
+@model IEnumerable<InstaRoi.Models.MarketingElements>
+@using Microsoft.AspNetCore.Identity
+@using InstaRoi.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Marketing Element Dashboard";
+}
+<style>
+    .card:hover {
+        opacity: 0.8 !important;
+    }
+
+    .card-header {
+        font-weight: bold;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        background-color: #663399;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        opacity: 1;
+        padding-top: 10px;
+        filter: alpha(opacity=40);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .background {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .c {
+        padding: 5px;
+    }
+
+    .card-deck {
+        margin-bottom: 5px;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .card {
+        margin: 5px;
+        margin-bottom: 5px;
+        background-color: #303030;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.5s;
+        border-radius: 5px;
+        color: white;
+        line-height: 50%;
+    }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+
+    img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        transition: all 0.4s ease-out;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .btn {
+        background-color: #663399;
+        color: white;
+        transition-duration: 0.4s;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-color: #663399;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+        .btn:hover {
+            background-color: #663399;
+            color: #39FF00;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-color: #663399;
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+
+    .f0 {
+        color: white !important;
+        width: 100%;
+        height: 100%;
+        background: #303030 !important;
+        padding-top: 0px !important;
+    }
+    /* Tooltip container */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    }
+
+        /* Tooltip text */
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+</style>
+@*<div class="tooltip">
+        Hover over me
+        <span class="tooltiptext">Tooltip text</span>
+    </div>*@
+<div class="title1">
+    <h2>Dashboard</h2>
+    <a asp-action="Create" class="btn btn-default" style="margin-bottom:5px !important;">Calculate new Element</a>
+    @*<a href="http://pdf-ace.com/pdfme/" target="_blank" class="btn btn-default" style="margin-bottom:5px !important;">Download Report</a>*@
+</div>
+@foreach (var item in Model)
+{
+    @if ((@item.ElementType == "Social Media") && (@item.UserName == @UserManager.GetUserName(User)))
+    {
+        <a asp-action="Details" asp-route-id="@item.ElementId" style="color:white; text-decoration:none;">
+            <div class="card-deck col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="background" style="background-image:url(../images/social.jpeg); width:100%; height:150px; background-size:cover">
+
+                        <div class="card-header">
+                            <p>
+                                <b>
+                                    @Html.DisplayFor(modelItem => item.ElementName)
+                                </b>
+                            </p>
+                            <p>
+                                <b>
+                                    @Html.DisplayFor(modelItem => item.ElementType)
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="c">
+                        <div class="card-block">
+                            <div class="cb1 col-md-6 col-sm-6 col-xs-6">
+                                <p>
+                                    <small>Investment:</small>
+                                    <b>
+                                        @Html.DisplayFor(modelItem => item.Investment6)
+                                    </b>
+                                </p><br />
+                                <p>
+                                    <small>Profit:</small>
+                                    <b>
+                                        @Html.DisplayFor(modelItem => item.Profit)
+                                    </b>
+                                </p><br />
+                            </div>
+                            <div class="cb2 col-md-6 col-sm-6 col-xs-6">
+                                <p>
+                                    <small>ROI:</small>
+                                    <b>
+                                        @Html.DisplayFor(modelItem => item.Roi)
+                                    </b>
+                                </p><br />
+                                <p style="font-size:100%; color:#39ff00 ">
+                                    <small>ROI%:</small>
+                                    <b>
+                                        @Html.DisplayFor(modelItem => item.RoiPercentage)
+                                    </b>
+                                </p><br />
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-action="Details" asp-route-id="@item.ElementId" class="btn btn-default">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.ElementId" class="btn btn-default">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.ElementId" class="btn btn-default">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+}

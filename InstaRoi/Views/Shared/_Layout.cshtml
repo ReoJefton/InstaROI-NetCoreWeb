@@ -1,0 +1,230 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@using Microsoft.AspNetCore.Identity
+@using InstaRoi.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InstaROI</title>
+    <link href="~/images/instaroi2_G64_icon.ico" rel="shortcut icon" type="image/x-icon" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <style>
+        /*.focus {
+            background-color: lightblue !important;
+            color: #39ff00 !important;
+        }*/
+    </style>
+    <div id="mySidenav" class="sidenav" style="">
+
+        <div class="background" style="background-image: url(../images/other5.jpeg); width:100%; height:150px; background-size:cover; margin-bottom:10px;">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="padding-top:45px;">&times;</a>
+            
+                @*<div class="img-circle" style="background-image: url(../images/other5.jpeg); width:20%; height:60px; background-size:cover; padding-top:20px  !important; margin-left:30px  !important;">*@
+                <div>
+                    <a style="padding-top:55px; text-decoration:none; margin-left:15px;">@UserManager.GetUserName(User)</a>
+                    @*<a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" style="padding-top:55px;">@UserManager.GetUserName(User)</a>*@
+                </div>
+                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <button type="submit" class="btn btn-link navbar-btn navbar-link" style="margin-left:30px; text-decoration:none; border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 5px;">Log out</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-link navbar-btn navbar-link" style="margin-left:30px; text-decoration:none; border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 5px;">Log in</button>
+                    }
+                </form>
+            </div>
+            
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/house-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>Marketing Elements</p></div>
+            </a>
+        </div>
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Dashboard" asp-action="Index" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/dashboard-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>Dashboard</p></div>
+            </a>
+        </div>
+        @*<hr style="border-color: #663399;" />*@
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Home" asp-action="Faq" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <hr style="border-color: #663399;" />
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/info-2-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>FAQs</p></div>
+            </a>
+        </div>
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Home" asp-action="Chat" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/chat-4-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>Chat</p></div>
+            </a>
+        </div>
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Home" asp-action="Contact" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/read-message-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>Contact</p></div>
+            </a>
+        </div>
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Home" asp-action="Start" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/plus-5-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>Let's Get Started</p></div>
+            </a>
+        </div>
+        @*<hr style="border-color: #663399;" />*@
+        <div class="w3-animate-left">
+            <a asp-area="" asp-controller="Home" asp-action="AdminView" style="text-decoration:none;" class="col-md-12 col-sm-12 col-xs-12">
+                <hr style="border-color: #663399;" />
+                <div class="col-md-2 col-sm-2 col-xs-2" style="background-image: url(../images/settings-4-512.png); background-repeat:no-repeat; height:20px; background-size:contain; margin-left:10px; margin-bottom:10px;"></div>
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding-left:5px; padding-right:5px;"><p>Control Center</p></div>
+            </a>
+        </div>
+    </div>
+        <!-- Use any element to open the sidenav -->
+        @*<span onclick="openNav()">open</span>*@
+
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #53297c !important; opacity: 0.9 !important;
+        ">
+            <div class="container">
+                @*<button type="button" value="&#9776;" style="font-size:30px;cursor:pointer" onclick="openNav()"></button>*@
+                <div class="navbar-header" style="background-color: #53297c !important;">
+                    <span style="font-size:28px;cursor:pointer;margin-left:25px !important;margin-right:15px !important" onclick="openNav()">&#9776;</span>
+                    <span style="font-size:28px; padding-right:10px;">InstaROI</span>
+                    @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>*@
+                    @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" >InstaROI</a>*@
+                </div>
+                <div class="navbar-header nav2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand a1" style="font-size:14px;">Marketing Elements</a>
+                    <a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand a1" style="font-size:14px;">Dashboard</a>
+                </div>
+                <div class="navbar-collapse collapse" style="background-color: #53297c !important;">
+                    <ul class="nav navbar-nav">
+
+                        <li><a asp-area="" asp-controller="Home" asp-action="Faq" style="padding-left:0px !important;">FAQs</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Chat" style="padding-left:0px !important;">Chat</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact" style="padding-left:0px !important;">Contact</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Start" style="padding-left:0px !important;">Let's Get Started</a></li>
+                    </ul>
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content" id="body1" style="min-height: 300px !important;">
+            @RenderBody()
+           
+            <footer>
+                @*<hr />*@
+                <div class="f col-md-12 col-sm-12 col-xs-12" style="border-radius: 5px;">
+                    <div class="f1 col-md-4 col-sm-4 col-xs-12" style="border-top-left-radius: 5px;">
+                        <!--RJ-Footer left side content-->
+                        @*<ul class="list-inline">*@
+                        <p>Mobile: <a href="tel:+5195016346">(519) 501-6346</a></p>
+                        <p>Email: <a href="mailto:info@nexgenmarketing.ca">info@nexgenmarketing.ca</a></p>
+                        @*<li>&copy; 2018 - NexGEN Marketing Group. All Rights Reserved.</li>*@
+                        @*</ul>*@
+                    </div>
+                    <div class="f2 col-md-4 col-sm-4 col-xs-12">
+                        <!--RJ-Footer right side content-->
+                        <ul class="list-inline">
+                            @*<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>*@
+                            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        </ul>
+                        <ul class="list-inline">
+                            <li><a href="https://www.facebook.com/nexgenmarketing1/" target="_blank">Facebook</a></li>
+                            <li><a href="https://www.linkedin.com/company/nexgen-marketing-group" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://www.instagram.com/nexgenmarketinggroup/" target="_blank">Instagram</a></li>
+                        </ul>
+                    </div>
+                    <div class="f3 col-md-4 col-sm-4 col-xs-12" style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                        @*<p align="center"><img alt="nexGen Logo" src="~/images/footer-logo.png"></p><br>*@
+                        <p>&copy; 2018 - NexGEN Marketing</p>
+                        <p>Group. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+       </div>
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "270px";
+                document.getElementById("mySidenav").style.display = "block";
+                //document.getElementById("main").style.marginLeft = "250px";
+                //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                document.getElementById("body1").style.opacity = "0.5";
+                //if (document.getElementById("body").oncontextmenu()) {
+
+                //    function closeNav();
+                //}
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("mySidenav").style.display = "none";
+                //document.getElementById("main").style.marginLeft = "0";
+                //document.body.style.backgroundColor = "white";
+                document.getElementById("body1").style.opacity = "1";
+            }
+        </script>
+    @*<script>
+        $('li').click(function () {
+            $(this).siblings().removeClass('focus');
+            $(this).addClass('focus');
+        });
+    </script>*@
+</body>
+</html>
+
+

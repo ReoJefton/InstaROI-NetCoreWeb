@@ -1,0 +1,121 @@
+@model InstaRoi.Models.MarketingElements
+@{
+    ViewData["Title"] = "Faq";
+}
+
+@*<h2>Faq</h2>*@
+
+<style>
+    .accordion {
+        margin-bottom: 5px;
+        background-color: #444;
+        color: #ffffff;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.4s;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-color: #444;
+        font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
+    }
+
+        .active, .accordion:hover {
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+            background-color: #444;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #39FF00;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+        color: #663399;
+    }
+
+    .panel {
+        border: 0px !important;
+        font-size: 15px;
+        /*padding-top: 10px !important;*/
+        margin-bottom: 5px;
+        border-radius: 5px;
+        font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
+        color: #ffffff;
+        padding: 0 18px;
+        background-color: #663399;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+</style>
+
+<h4>Frequently Asked Questions (FAQs)</h4>
+
+    <button class="accordion w3-animate-left">1.	How Do I Calculate ROI?  </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">The basic calculation is (Return-Investment/Investment) x 100 whereby Return = Revenue and Investment = Expenses.</p>
+    </div>
+
+    <button class="accordion w3-animate-left">2.	How Do I Figure Out What Revenue and Expenses should be included in the calculation? </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">Complete the boxes within the app or request one of our detailed Guides.</p>
+    </div>
+
+    <button class="accordion w3-animate-left">3.	 If I Need Help Filling out the Fields in this App, Who Do I Contact?  </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">We have a customer service line at : +1(519) 5016346 or email : <a href="mailto:info@nexgenmarketing.ca" style="color:white">info@nexgenmarketing.ca</a></p>
+    </div>
+    @*<button class="accordion w3-animate-left">4.	 How Do I Assign Users Within the App?  </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">The Top Administrator for the app can assign users of the app which come with associated permissions for their area of marketing. This can be found in Settings.</p>
+    </div>*@
+    <button class="accordion w3-animate-left">4.	What happens if I complete the fields for an ROI calculation and I don’t like the answer due to inaccuracy of inputs or results?  </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">At the end of the calculation area within each marketing element of the app, there is a choice to save or start over or delete.  Saved calculations will upload automatically to your dashboard for the particular marketing element you are working on.</p>
+    </div>
+    <button class="accordion w3-animate-left">5.	 Is there a reporting function within this app?  </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">Yes, Each marketing element with saved calculations in the dashboard can be used in the reporting function of the app.  The app will automatically provide reporting based on the timeframe you wish to analyze and the way the data appears (i.e. Pie chart.)</p>
+    </div>
+    <button class="accordion w3-animate-left" style="padding-bottom: 5px !important;">
+        If you have more questions on ROI, here are some helpful links to read and explore:
+        <ul>
+            <li><a href="https://www.brandwatch.com/blog/marketing-6-key-social-roi-questions-answered-by-top-industry-influencers/" target="_blank" style="color:white">Marketing: 6 Key Social ROI Questions Answered by Top Industry Influencers</a></li>
+            <li><a href="http://www.verticalmeasures.com/measurement-reporting/6-questions-and-answers-about-content-marketing-roi/" target="_blank" style="color:white">6 Questions and Answers about Content Marketing ROI</a></li>
+            <li><a href="https://hbr.org/2015/04/the-most-common-mistake-people-make-in-calculating-roi" target="_blank" style="color:white">The Most Common Mistake People Make In Calculating ROI</a></li>
+            <li><a href="https://simplymeasured.com/blog/5-answers-to-top-social-roi-questions/" target="_blank" style="color:white">5 Answers to Top Social ROI Questions</a></li>
+        </ul>
+    </button>
+    <div class="panel">
+        <p style="margin: 10px !important;">
+            Still need help? Call Nexgenmarketing at +1(519) 5016346 or mail <a href="mailto:info@nexgenmarketing.ca" style="color:white">info@nexgenmarketing.ca</a>
+        </p>
+    </div>
+  
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+

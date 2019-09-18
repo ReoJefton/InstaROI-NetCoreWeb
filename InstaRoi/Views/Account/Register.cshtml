@@ -1,0 +1,179 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    //Layout = "";
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+}
+<nav class="navbar navbar-inverse navbar-fixed-top nav-xs" style="background-color: #53297c !important;  border-width: 0 0 1px !important; opacity: 1 !important;">
+    <div class="container">
+        <div class="navbar-header" style="background-color: #53297c !important; opacity: 1 !important;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Account" asp-action="Login" class="navbar-brand">Welcome to InstaROI</a>
+            @*<a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand" style="font-size:99.5%;">Dashboard</a>
+                <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand" style="font-size:99.5%;">Measure</a>*@
+
+        </div>
+        @*<div class="navbar-header nav2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand">Dashboard</a>
+                <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand">Marketing Element</a>
+
+
+            </div>
+            <div class="navbar-collapse collapse" style="background-color: #53297c !important;">
+                <ul class="nav navbar-nav">
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="Faq">FAQs</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Chat">Chat</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>*@
+    </div>
+</nav>
+<nav class="navbar navbar-fixed-top nav-xs2" style="background-color: #53297c !important; visibility:hidden; align-content:center; opacity: 1 !important;">
+    <div class="container">
+        <div class="navbar-header" style="background-color: #53297c !important; opacity: 1 !important;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*<p>Welcome to InstaROI</p>*@
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="color:white; text-decoration:none;">Welcome to InstaROI</a>
+            @*<a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand" style="font-size:99.5%;">Dashboard</a>
+            <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand" style="font-size:99.5%;">Measure</a>*@
+
+        </div>
+        <div class="navbar-header nav2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <p class="navbar-brand a1" style="font-size:14px;">NexGEN Marketing Group</p>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="padding-top: 28px !important; padding-bottom: 20px !important; border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 5px;">
+    <div class="row">
+        <div class="col-md-5 col-sm-5 w3-animate-left" style="background-color: #53297c; margin-bottom:5px; border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 5px;">
+            <section>
+                <img alt="nexGen Logo" src="~/images/InstaROI logo-Final.png" style="height:70px; display: block; margin: 0 auto; padding-top: 10px;">
+                <h4>@ViewData["Title"]</h4>
+                <hr />
+                <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                    <h4>Create a new account</h4>
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-default" style="margin-bottom:10px;">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div class="col-md-6 col-md-offset-1 col-sm-7 w3-animate-left" style="border:none !important;">
+            <section>
+                @*<h3>Welcome to InstaROI</h3>*@
+                @*<hr />*@
+                <h4>Measure your Return on Investment for any Marketing Element Instantly!</h4>
+                <hr />
+                @*<img class="img-top" src="~/images/InstaROI (520x254).jpg" alt="Card image cap" style="width:100%; height:120px; display: block; ">*@
+
+
+                @{
+                    //var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                    //if (loginProviders.Count == 0)
+                    //var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+                    //if (loginProviders.Count == 0)
+                    {
+                        <div>
+                            @*<p>
+                                    There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                    for details on setting up this ASP.NET application to support logging in via external services.
+                                </p>*@
+                            <p>Enter your information for any marketing element and your ROI will be automatically calculated. Create your account or log in to get started.</p>
+                            @*<ul style="list-style-type:circle">
+                                    <li>View various Marketing Elements provided by NextGEN Marketing Group</li>
+                                    <li>Create, measure and save ROI (Return of Investment) for Marketing Elements</li>
+                                    <li>View Detailed Information and list of all Marketing Element through the Dashboard </li>
+                                </ul>*@
+                        </div>
+                    }
+                    //else
+                    //{
+                    //    <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                    //        <div>
+                    //            <p>
+                    //                @foreach (var provider in loginProviders)
+                    //                {
+                    //                    <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">@provider.AuthenticationScheme</button>
+                    //                }
+                    //            </p>
+                    //        </div>
+                    //    </form>
+                    //}
+                }
+                @*<hr />*@
+                <p align="center" style="margin-top:100px;">Powered By</p>
+                <img class="" alt="nexGen Logo" src="~/images/nexgenimg.png" style="height:100px; display: block; margin: 0 auto;">
+            </section>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn {
+        background-color: #663399;
+        color: white;
+        transition-duration: 0.4s;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-color: #663399;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+        .btn:hover {
+            background-color: #663399;
+            color: #39FF00;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-color: #663399;
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+</style>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

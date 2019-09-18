@@ -1,0 +1,111 @@
+@model InstaRoi.Models.MarketingElements
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<style>
+    p{
+        margin:0 0 0px !important;
+    }
+    dt {
+        font-size: small;
+        font-weight: normal;
+    }
+
+    dd {
+        font-size: large;
+    }
+
+    .c1 {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        background-color: #663399;
+    }
+
+        .c1 dt {
+            color: #ffffff;
+        }
+
+    .c2 dt {
+        color: #663399;
+    }
+
+    .card {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        background-color: #303030;
+        font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
+        line-height: normal;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .btn {
+        background-color: #663399;
+        color: white;
+        transition-duration: 0.4s;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-color: #663399;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+        .btn:hover {
+            background-color: #663399;
+            color: #39FF00;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-color: #663399;
+            box-shadow: 0 8px 16px 0 rgba(89,38,124,5.2);
+        }
+</style>
+<h4>Delete @Html.DisplayFor(model => model.ElementName)</h4>
+<div class="row">
+    <div class="card col-md-12 col-sm-12">
+
+        <div class="c1 col-md-4 col-sm-12" style="padding-top: 2.5px;">
+            <dl>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.ElementName)*@
+                    <p style="margin-top:10px !important;">Element Name</p>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ElementName)
+                </dd>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.ElementType)*@
+                    <p>Element Type</p>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ElementType)
+                </dd>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.RoiPercentage)*@
+                    <p>ROI Percentage</p>
+                </dt>
+                <dd style="color:#ffffff">
+                    @Html.DisplayFor(model => model.RoiPercentage)
+                </dd>
+            </dl>
+        </div>
+        <div class="c2 col-md-8 col-sm-12" style="padding-bottom: 5px;">
+            <h3>Are you sure you want to delete this?</h3>
+            <dl></dl>
+            <div style="margin-bottom:5px">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="ElementId" />
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                    <a asp-action="Index" class="btn btn-default">Back to Dashboard</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
