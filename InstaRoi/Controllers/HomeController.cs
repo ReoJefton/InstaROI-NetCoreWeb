@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InstaRoi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
 
