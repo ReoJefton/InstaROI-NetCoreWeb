@@ -23,29 +23,29 @@
             </button>
             <a asp-area="" asp-controller="Account" asp-action="Login" class="navbar-brand">InstaROI</a>
             @*<a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand" style="font-size:99.5%;">Dashboard</a>
-                <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand" style="font-size:99.5%;">Measure</a>*@
+            <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand" style="font-size:99.5%;">Measure</a>*@
 
         </div>
         @*<div class="navbar-header nav2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand">Dashboard</a>
-                <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand">Marketing Element</a>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <a asp-area="" asp-controller="Dashboard" asp-action="Index" class="navbar-brand">Dashboard</a>
+        <a asp-area="" asp-controller="Home" asp-action="About" class="navbar-brand">Marketing Element</a>
 
 
-            </div>
-            <div class="navbar-collapse collapse" style="background-color: #53297c !important;">
-                <ul class="nav navbar-nav">
+        </div>
+        <div class="navbar-collapse collapse" style="background-color: #53297c !important;">
+        <ul class="nav navbar-nav">
 
-                    <li><a asp-area="" asp-controller="Home" asp-action="Faq">FAQs</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Chat">Chat</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Faq">FAQs</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Chat">Chat</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
 
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>*@
+        </ul>
+        @await Html.PartialAsync("_LoginPartial")
+        </div>*@
     </div>
 </nav>
 <nav class="navbar navbar-fixed-top nav-xs2" style="background-color: #53297c !important; visibility:hidden; align-content:center; opacity: 1 !important;">
@@ -73,7 +73,7 @@
     </div>
 </nav>
 
-<div class="container" style="padding-top: 28px !important; padding-bottom: 20px !important; border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 5px;">
+<div class="container" style="padding-top: 28px !important; padding-bottom: 20px !important; border-radius: 5px;">
     @*<h2>@ViewData["Title"]</h2>*@
     <div class="row">
         <div class="col-md-5 col-sm-5 w3-animate-left" style="background-color: #53297c; margin-bottom:5px; border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 5px;">
@@ -114,7 +114,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group" >
+                    <div class="form-group">
                         <button type="submit" class="btn btn-default" style="margin-bottom:10px;">Log in</button>
                     </div>
                     <div class="form-group">
@@ -122,8 +122,8 @@
                             @*<a asp-action="ForgotPassword">Forgot your password?</a>*@
                         </p>
                         @*<p>
-                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-            </p>*@
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                        </p>*@
                     </div>
                 </form>
             </section>
@@ -147,14 +147,14 @@
                     {
                         <div>
                             @*<p>
-                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                        for details on setting up this ASP.NET application to support logging in via external services.
+                    There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                    for details on setting up this ASP.NET application to support logging in via external services.
                     </p>*@
                             <p>Enter your information for any marketing element and your ROI will be automatically calculated. Create your account or log in to get started.</p>
                             @*<ul style="list-style-type:circle">
-                        <li>View various Marketing Elements provided by NextGEN Marketing Group</li>
-                        <li>Create, measure and save ROI (Return of Investment) for Marketing Elements</li>
-                        <li>View Detailed Information and list of all Marketing Element through the Dashboard </li>
+                    <li>View various Marketing Elements provided by NextGEN Marketing Group</li>
+                    <li>Create, measure and save ROI (Return of Investment) for Marketing Elements</li>
+                    <li>View Detailed Information and list of all Marketing Element through the Dashboard </li>
                     </ul>*@
                         </div>
                     }
@@ -216,16 +216,16 @@
         font-family: Segoe UI,Tahoma,Geneva,Verdana,sans-serif !important;
         font-size: 1.4em;
         text-align: left;
-        height: 60px;
+        height: 90px;
         width: 100%;
         /*display: block;
-        position: absolute;
-        color: white;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;*/
+            position: absolute;
+            color: white;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;*/
         margin-top: 10px;
     }
 
@@ -237,7 +237,7 @@
     }
 </style>
 <script>
-    // function([string1, string2],target id,[color1,color2])    
+    // function([string1, string2],target id,[color1,color2])
     //consoleText(['Powered by', 'Powered by'], 'text', ['rebeccapurple', 'rebeccapurple']);
     consoleText(['Measure your Return on Investment for any Marketing Element Instantly!', 'Measure your Return on Investment for any Marketing Element Instantly!'], 'text', ['green', 'green']);
 
