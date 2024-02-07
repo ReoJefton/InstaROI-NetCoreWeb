@@ -41,7 +41,8 @@ namespace InstaRoi
         {
             // enable dependency injection for context of Roi1 database
             services.AddDbContext<InstaROIContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("RoiConnection")));
+            //options.UseSqlServer(Configuration.GetConnectionString("RoiConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("ROIConnection2")));
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -12,7 +12,7 @@ using InstaRoi.Data;
 
 namespace InstaRoi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DashboardController : Controller
     {
         private readonly InstaROIContext _context;
