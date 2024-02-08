@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <!--<TargetFramework>netcoreapp3.0</TargetFramework>-->
+    <!--<TargetFramework>net7.0</TargetFramework>-->
     <!--<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>-->
     <UserSecretsId>aspnet-InstaRoi-E82F7DB0-6036-44BD-A194-34433434B773</UserSecretsId>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
