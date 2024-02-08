@@ -7,7 +7,7 @@ env:
   AZURE_WEBAPP_NAME: InstaRoi
   AZURE_WEBAPP_PACKAGE_PATH: InstaRoi\published
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 2.0.x
+  DOTNET_CORE_VERSION: 2.x
   WORKING_DIRECTORY: InstaRoi
 jobs:
   build:
