@@ -194,7 +194,7 @@ a:focus {
 
 @media (min-width: 1213px) {
     .body-content {
-        flex: 1;
+        /*flex: 1;*/
         margin-top: 70px !important;
         position: relative !important;
     }
@@ -202,7 +202,7 @@ a:focus {
 
 @media (min-width: 768px) and (max-width: 1212px) {
     .body-content {
-        flex: 1;
+        /*flex: 1;*/
         margin-top: 110px !important;
         position: relative !important;
     }
@@ -210,6 +210,7 @@ a:focus {
 
 @media screen and (max-width: 767px) {
     .body-content {
+        /*flex: 1;*/
         margin-top: 80px !important;
         position: relative !important;
     }
@@ -247,5 +248,19 @@ a:focus {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
+@media screen and (max-width:991px) {
+    .card .c1 {
+        border-radius: 5px !important;
+    }
+}
+
+.card .c2 a {
+    display: inline-block;
+}
+
+.card .c1 p, .card .c2 p {
+    margin: 5px 0px;
+}
